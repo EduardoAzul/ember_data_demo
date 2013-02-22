@@ -31,17 +31,17 @@ App.IndexRoute = Ember.Route.extend({
 App.PostsRoute = Ember.Route.extend({
   model: function() {
     return App.Post.find();
-  },
-  events: {
-    addRecord: function() {
-      alert("So you want to add a record?");
-    }
   }
 });
 
 App.PostController = Ember.ObjectController.extend({
+  new: function() {
+    this.get('content').createRecord();
+  },
   save: function() {
-    alert("saving record");
+      this.get('content');
+      this.get('store').commit();
+      this.get('target.router').transitionTo('posts.index');
   },
   destroyRecord: function() {
     if (window.confirm("Are you sure you want to delete this post?")) {

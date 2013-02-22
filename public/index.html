@@ -42,12 +42,18 @@
     </div>
   </script>
   
+  <script type="text/x-handlebars" data-template-name="new">
+    <form {{action save on="submit"}}>
+      {{partial "post_fields"}}
+      <button type="submit">Save post</button>
+    </form>
+  </script>
   <script type="text/x-handlebars" data-template-name="post">
     <form {{action save on="submit"}}>
       {{partial "post_fields"}}
       <button type="submit">Update post</button>
       <button {{action destroyRecord}}>delete post</button>
-    </form
+    </form>
   </script>
   <script type="text/x-handlebars" data-template-name="_post_fields">
     {{view Ember.TextField valueBinding="title" id="title" placeholder="Title" required="true"}}<br />

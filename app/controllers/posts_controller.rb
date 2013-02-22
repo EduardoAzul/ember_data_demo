@@ -16,4 +16,15 @@ class PostsController < ApplicationController
 		@post.destroy
 		render :nothing => true
 	end
+
+	def update
+		@post = Post.find(params[:id])
+		@post.update_attributes(params[:post])
+		render :nothing => true
+	end
+
+	def create
+		Post.create(params[:post])
+		render :nothing => true
+	end
 end
