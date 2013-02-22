@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EmberDemo</title>
+  <link rel="stylesheet" href="/style/styles.css" type="text/css">
+  <script src="/js/jquery.js" type="text/javascript"></script>
+  <script src="/js/handlebars.js" type="text/javascript"></script>
+  <script src="/js/ember.js" type="text/javascript"></script>
+  <script src="/js/ember-data.js" type="text/javascript"></script>
+  <script src="/js/app.js" type="text/javascript"></script>
+
+  <script type="text/x-handlebars" data-template-name="application">
+    <div id="top">
+      Hello, {{firstName}} {{lastName}}<br />
+      <nav>
+        {{#linkTo "index"}}Home{{/linkTo}}
+        {{#linkTo "posts"}}Posts{{/linkTo}}
+        </nav>
+      <div id="container">
+        {{outlet}}
+      </div>
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="index">
+    <div>{{title}}</div>
+  </script>
+  
+  <script type="text/x-handlebars" data-template-name="posts">
+    <div id="sidebar">
+      {{#linkTo 'posts.new'}}<button>Add new post</button>{{/linkTo}}
+      <ul>
+        {{#each post in controller}}
+          <li>
+            {{#linkTo post post}} {{post.title}} {{/linkTo}}
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+    <div id="content">
+      {{outlet}}
+    </div>
+  </script>
+  
+  <script type="text/x-handlebars" data-template-name="post">
+    <form {{action save on="submit"}}>
+      {{partial "post_fields"}}
+      <button type="submit">Update post</button>
+      <button {{action destroyRecord}}>delete post</button>
+    </form
+  </script>
+  <script type="text/x-handlebars" data-template-name="_post_fields">
+    {{view Ember.TextField valueBinding="title" id="title" placeholder="Title" required="true"}}<br />
+    {{view Ember.TextArea valueBinding="body" id="body" placeholder="Body" required="true"}}<br />
+  </script>
+</head>
+<body>
+</body>
+</html>
