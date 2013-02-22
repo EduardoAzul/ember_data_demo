@@ -34,10 +34,13 @@ App.PostsRoute = Ember.Route.extend({
   }
 });
 
+App.PostsNewRoute = Ember.Route.extend({
+  setupController: function(controller) {
+    controller.newRecord();
+  }
+});
+
 App.PostController = Ember.ObjectController.extend({
-  new: function() {
-    this.get('content').createRecord();
-  },
   save: function() {
       this.get('content');
       this.get('store').commit();
@@ -49,5 +52,11 @@ App.PostController = Ember.ObjectController.extend({
       this.get('store').commit();
       this.get('target.router').transitionTo('posts.index');
     }
+  }
+});
+
+App.PostsNewController = Ember.ObjectController.extend({
+  newRecord: function() {
+    this.set('content', App.Post.createRecord({title: "new title"}));
   }
 });
