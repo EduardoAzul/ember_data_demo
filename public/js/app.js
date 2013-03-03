@@ -42,7 +42,6 @@ App.PostsNewRoute = Ember.Route.extend({
 
 App.PostController = Ember.ObjectController.extend({
   save: function() {
-      this.get('content');
       this.get('store').commit();
       this.get('target.router').transitionTo('posts.index');
   },
