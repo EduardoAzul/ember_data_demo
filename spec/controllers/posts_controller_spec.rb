@@ -1,6 +1,4 @@
 require 'spec_helper'
-
-describe PostsController do
 	describe "ajax get index" do
 		before(:each) do
 			@post = stub_model(Post)
